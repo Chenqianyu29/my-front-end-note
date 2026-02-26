@@ -19,7 +19,7 @@
    - 框架 / 库: React.js (Redux), Vue.js（Vuex）, Next.js
    - UI可视化：Tailwind CSS、Shadcn、AntD、Element Plus(vue)、ECharts、Arco
    - 云端部署: Cloud platforms (AWS =>S3/EC2, Google Cloud, Azure, 阿里云), Vercel
-   - DevOps（CI/CD）：Version control (Git), package managers/build tools (npm/Yarn, Vite, Babel), linters (ESLint/Prettier/Husky/Commitlint); CI/CD pipelines (GitHub Actions)
+   - DevOps（CI/CD）：Version control (Git), package managers/build tools (npm, Vite, Babel), linters (ESLint/Prettier/Husky/Commitlint); CI/CD pipelines (GitHub Actions)
    - 单元测试/UI测试: Postman (integration testing of APIs )
    - 其他：Responsive web design（响应式）,cross-browser compatibility（跨端）, SEO, RESTful API
 
