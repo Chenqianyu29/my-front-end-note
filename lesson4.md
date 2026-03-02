@@ -53,6 +53,11 @@
 3. IntersectionObserver
 4. 双token、access token、refresh token
 
+### github
+
+1. star：100 分批
+2. fork：30-50 分批
+
 ### 场景题答题要点
 
 1. 举例子，回答清楚数据结构
