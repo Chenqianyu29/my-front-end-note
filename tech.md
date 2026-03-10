@@ -48,10 +48,112 @@
 
 2. 解决办法：使用raf代替定时器，它会在浏览器下一次重绘之前执行。
 
-#### 如何用状态基驱动UI
+#### 如何用状态机驱动UI
 
 1. JQ react/vue 对比
 2. 状态驱动UI的意思是不直接操作UI，而是根据状态进行渲染页面，数据发生变化时，页面进行更新。
 3. 如果不使用这样做，会出现if-else if的层层嵌套，不利于维护。
 4. 方法一：状态变量驱动
 5. 方法二：定义状态字典驱动
+
+#### [了解queueMicrotask](https://juejin.cn/post/7523259855789244456)
+
+1. 当有紧急任务想在当前代码执行完、页面渲染前立即处理，用queueMicrotask(callback)把回调塞进微任务队列执行。
+2. 应用：
+
+- 分批处理大批量数据
+- 聊天应用中合并处理消息
+
+3. 注意事项：微任务里的错误不会冒泡，记得try-catch。
+
+#### 了解MutationObserver
+
+> MDN：https://developer.mozilla.org/zh-CN/docs/Web/API/MutationObserver
+>
+> 稀土掘金：https://juejin.cn/post/7568350149086773302
+
+1. 核心功能：异步监听DOM树的增删改查操作。所有 DOM 变化会先被记录，待其他脚本执行完成后统一触发回调，避免频繁操作导致的性能问题。
+2. 基本用法：
+
+- 创建观察器实例
+  - mutationsList：包含所有 DOM 变化的 `MutationRecord` 对象数组，即记录的有变化的所有 DOM 。
+  - observer：观察器实例本身，可用于停止观察。
+
+```js
+const observer = new MutationObserver((mutationsList, observer) => {
+  mutationsList.forEach((mutation) => {
+    console.log("变化类型:", mutation.type);
+    // 处理具体变化（如新增节点、属性修改等）
+    if (mutation.type === "childList") {
+      console.log("子节点被新增或删除");
+    } else if (mutation.type === "attributes") {
+      console.log(mutation.attributeName + " 属性被修改了");
+    }
+  });
+});
+```
+
+- 观察器配置
+
+```js
+const config = {
+  childList: true, // 监听子节点的变化
+  attributes: true, // 监听属性的变化
+  subtree: true, // 监听所有后代节点的变化
+  attributeFilter: ["class", "id"], // 仅监听 class 和 id 属性，不指定则监听所有属性
+};
+```
+
+- 启动观察
+  - targetNode：需要监听的 DOM 节点。
+  - config：观察器配置对象。
+
+```js
+const targetNode = document.getElementById("target");
+observer.observe(targetNode, config);
+```
+
+- 停止观察
+
+```js
+observer.disconnect();
+```
+
+3. 和IntersectionObserver的区别
+
+- `MutationObserver` 监听 DOM 变化，`IntersectionObserver` 监听元素可见性变化。
+
+#### [用js运行机制解释promise](https://juejin.cn/post/7570897638441271323)
+
+1. JavaScript 运行机制（事件循环 + 微任务/宏任务），then、catch、finally、queueMicrotask、MutationObserver -> 微任务，定时器 -> 宏任务
+
+```js
+const p = new Promise((resolve, reject) => {
+    console.log(1);
+    setTimeout(() => {
+        console.log(2);
+        resolve();
+    }, 1000);
+});
+
+p.then(() => console.log(3));
+console.log(4);
+```
+
+上述代码输出为：
+
+```
+1
+4
+2
+3
+```
+
+执行步骤：
+
+1. 构造函数同步执行，输出1
+2. 定时器调度到宏任务，等待
+3. 输出4（p还处于pending状态，忽略then这一行）
+4. 同步代码执行完毕后，执行定时器，输出2
+5. promise resolve()，将then的回调调度到微任务
+6. 输出3

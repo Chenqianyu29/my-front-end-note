@@ -1,7 +1,7 @@
 main();
 
 function main() {
-  console.log(user);
+  console.log(user); // undefined
   var user = { name: "xiaoyao" };
 
   //   console.log(age); // 暂时性死区 TDZ
@@ -9,7 +9,7 @@ function main() {
 
   sayHi();
   function sayHi() {
-    console.log("hi");
+    console.log("hi"); // hi
   }
 }
 
