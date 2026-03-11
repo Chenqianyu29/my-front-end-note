@@ -59,6 +59,19 @@
 #### [了解queueMicrotask](https://juejin.cn/post/7523259855789244456)
 
 1. 当有紧急任务想在当前代码执行完、页面渲染前立即处理，用queueMicrotask(callback)把回调塞进微任务队列执行。
+
+```js
+console.log('主线程：现在轮到我表演了！');
+queueMicrotask(() => {
+  console.log('微任务：终于轮到我插队了！');
+});
+console.log('主线程：我还没结束呢！');
+// 输出顺序：
+// 1. 主线程：现在轮到我表演了！
+// 2. 主线程：我还没结束呢！
+// 3. 微任务：终于轮到我插队了！
+```
+
 2. 应用：
 
 - 分批处理大批量数据
@@ -76,7 +89,7 @@
 2. 基本用法：
 
 - 创建观察器实例
-  - mutationsList：包含所有 DOM 变化的 `MutationRecord` 对象数组，即记录的有变化的所有 DOM 。
+  - mutationsList：包含所有 DOM 变化的 `MutationRecord` 对象数组，即监听到的有变化的 DOM 。
   - observer：观察器实例本身，可用于停止观察。
 
 ```js
@@ -101,6 +114,7 @@ const config = {
   attributes: true, // 监听属性的变化
   subtree: true, // 监听所有后代节点的变化
   attributeFilter: ["class", "id"], // 仅监听 class 和 id 属性，不指定则监听所有属性
+  characterData:true, // 监听文本节点变化，输入中文字符时可能无法触发
 };
 ```
 

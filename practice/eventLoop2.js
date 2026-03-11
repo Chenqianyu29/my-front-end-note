@@ -2,7 +2,7 @@
 async function async1() {
   console.log("async1 start");
   await async2();
-  await async3();
+  await async3(); // 微1
   console.log("async1 end"); // 微3
 }
 
