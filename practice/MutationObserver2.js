@@ -1,10 +1,8 @@
 // 1. 创建实例
-const observer = new MutationObserver((mutationsList, observer) => {
-  mutationsList.forEach((mutation) => {
-    if (mutation.type === "childList") {
-      console.log("子节点被新增或删除");
-    } else if (mutation.type === "attributes") {
-      console.log(mutation.attributeName + "属性被修改了");
+const observer = new MutationObserver((mutationList, observer) => {
+  mutationList.forEach((item) => {
+    if (item.type === "childList") {
+      console.log("子节点变动了");
     }
   });
 });
@@ -13,14 +11,14 @@ const observer = new MutationObserver((mutationsList, observer) => {
 const config = {
   childList: true,
   attributes: true,
-  attributesFilter: ["class", "id"],
+  attributeFilter: ["class"],
   subTree: true,
   characterData: true,
 };
 
 // 3. 启动监听
-const node = document.getElementById("target");
-observer.observe(node, config);
+const target = document.getElementById("target");
+observer.observe(target, config);
 
-// 4. 关闭监听
+// 4. 停止监听
 observer.disconnect();

@@ -1,6 +1,6 @@
 async function async1() {
   console.log("async1 start");
-  await async2();
+  await async2(); // suspended 出栈
   console.log("async1 end"); // 等待await的结果，调度到异步任务：微任务1
 }
 
@@ -25,7 +25,10 @@ new Promise(function (resolve) {
 
 console.log("script end");
 // 宏任务
+// DOM 渲染时机
 // 微任务
+// Web Worker 不在eventLoop之中 不占用主线程
+
 // script start
 // async1 start
 // async2
