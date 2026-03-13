@@ -5,6 +5,7 @@
 // 2 module
 // 3 block
 // 4 function
+// 5 lexical scope 词法作用域，本质上是一种规则
 
 // globalThis 浏览器和服务器环境的总称
 // for
