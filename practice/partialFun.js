@@ -19,14 +19,3 @@ user.sayHello = partialFun(
 );
 
 user.sayHello("hello");
-
-// const arr = [1, 2, 3];
-// arr.name = "array";
-
-// for (let key of arr.keys()) {
-//   console.log(key); // 0, 1, 2, name
-// }
-
-// for (let value of arr) {
-//   console.log(value); // 1, 2, 3
-// }
