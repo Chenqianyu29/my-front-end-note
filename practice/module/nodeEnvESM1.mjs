@@ -7,10 +7,14 @@
 function add(a, b) {
   return a + b;
 }
+function minus(a, b) {
+  return a - b;
+}
 
 const a = 1;
-
-export { add, a };
+const b = 2;
+export { a, b };
+export default { add, minus };
 
 // export default const a = 1 不能接收变量声明
 // export default function addFun() {} 函数或类的声明可以接收
