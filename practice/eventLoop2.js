@@ -17,10 +17,14 @@ async function async3() {
 console.log("script start");
 
 setTimeout(function () {
-  console.log("setTimeout"); // 宏1
+  console.log("setTimeout1"); // 宏1
 }, 0);
 
 async1();
+
+setTimeout(function () {
+  console.log("setTimeout2"); // 宏2
+}, 0);
 
 new Promise(function (resolve) {
   console.log("promise1");
@@ -39,4 +43,5 @@ console.log("script end");
 // async3
 // promise2
 // async1 end
-// setTimeout
+// setTimeout1
+// setTimeout2
