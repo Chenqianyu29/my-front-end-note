@@ -267,7 +267,7 @@ hello();
 
 2. default 是导出的默认值，如果同时默认导出多个，将放到对象里。
 
-3. 具名导出的变量，直接挂载到导出对象上。
+3. 具名导出的变量和函数，直接挂载到导出对象上。
 
 ```js
 function add(a, b) {
@@ -319,7 +319,7 @@ increment();
 console.log(count); // 2
 ```
 
-> 这里我们可以看到，直接使用ESM导出的变量，它是能够给感知实时变化的，因为实际上ESM导出的值实际上是一个引用，这个引用指向模块内部的变量。
+> 这里我们可以看到，直接使用ESM导出的变量，它是能够给感知实时变化的，因为实际上ESM导出的值是一个引用，这个引用指向模块内部的变量。
 
 
 
@@ -333,14 +333,9 @@ function increment() {
   return count++;
 }
 
-function getCount() {
-  return count;
-}
-
 module.exports = {
   count,
   increment,
-  getCount,
 };
 ```
 
