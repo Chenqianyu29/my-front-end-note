@@ -56,3 +56,18 @@
 - 收获：
   - 熟悉动态路由加载流程。
   - 开发了倒计时组件和进度条组件，分别用于订单支付倒计时和订单状态展示，提升代码复用性和用户体验。
+
+### Interview Copilot（AI 面试回答助手）
+
+- 项目介绍：Interview Copilot 是一款面向求职者的 AI 面试训练工具，旨在解决用户"知道怎么做但不会说"、"回答缺乏结构"等痛点。用户输入面试问题后，系统根据角色设定生成针对性回答，并支持 STAR 结构优化和模拟追问，帮助用户系统化提升面试表达能力。
+- 技术栈：Next.js（App Router）、TypeScript、Zustand、TailwindCSS、shadcn/ui、Vercel AI SDK、OpenAI API
+- 功能：
+  - 角色化回答生成：用户可设定身份（学生/职场人）、经验年限和意向公司场景，AI 依据角色快照生成差异化回答，历史记录同步保存角色上下文。
+  - 流式回答展示：调用 OpenAI 接口流式输出回答，通过 ReadableStream 分块解码实时追加，配合自动跟随滚动，呈现打字机效果。
+  - STAR 结构优化：主答案保存后解锁，AI 将回答重构为 Situation / Task / Action / Result 四段式结构，辅助用户训练结构化表达。
+  - 模拟追问与无限追问链：AI 基于当前问题和回答生成 3 条深度追问，用户点击任意追问可自动跳转生成新一轮回答，形成可无限延伸的追问链路。
+  - 历史记录管理：基于 Zustand persist 中间件将题目记录持久化至 localStorage，支持收藏，再次进入已保存问题时直接读取缓存，不重新调用 AI。
+- 收获：
+  - 掌握 Vercel AI SDK 流式接口的接入方式，理解 ReadableStream 分块读取与实时 UI 更新的实现思路。
+  - 深入理解 React Effect 竞态问题，使用 AbortController 解决 Strict Mode 双重执行和页面卸载时的请求泄露。
+  - 熟悉 Zustand 分层状态管理模式，会话状态与持久化状态分 store 维护，职责清晰。
