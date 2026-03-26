@@ -18,6 +18,9 @@
 
 2. **live server =>  index.html  => 手机访问**
 3. ip最多到小区，mac是真正的家（门牌号）（mac掌握的是以太网）
+4. 如何修改自己的dns：
+   - mac：网络设置-》高级-》dns
+   - win：网络设置-》属性-》dns设置
 
 
 
