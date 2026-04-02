@@ -1,9 +1,15 @@
+// 防抖
+/**
+ * 在执行间隔内多次触发，重新计时
+ * @param {function} fn 需要防抖的函数
+ * @param {number} delay 执行间隔
+ */
 function debunce(fn, delay) {
-  let timer = null; // 记录定时器
+  let timer = null;
   return function (...args) {
     const context = this;
     if (timer) {
-      // 如果已经开启定时器了，关闭它
+      // 定时器存在，关闭它
       clearTimeout(timer);
     }
     timer = setTimeout(() => {
